@@ -1,10 +1,16 @@
-# Getting Started with Create React App
+# React - Login using Okta
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Refer this [link](https://www.smashingmagazine.com/2022/08/implementing-okta-authentication-react/) and create new application in Okta. Then update the `REACT_APP_OKTA_CLIENT_ID` & `REACT_APP_OKTA_ISSUER` in the [.env](.env) file.
+
+Refer this [link](https://github.com/okta/okta-auth-js) for more details about Okta integration with React.
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Download all dependencies.
 
 ### `npm start`
 

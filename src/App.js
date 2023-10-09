@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useNavigate } from "react-router-dom";
+import { Security } from "@okta/okta-react";
+import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
+import { config as oktaConfig } from "./config";
+
+import Footer from "./components/Footer";
+import Nav from "./components/Nav";
+import AppRoutes from "./components/Routes";
+
+const oktaAuth = new OktaAuth(oktaConfig.oidc);
 
 function App() {
+  const navigate = useNavigate();
+  const restoreOriginalUri = (_oktaAuth, originalUri) => {
+    navigate(toRelativeUrl(originalUri || "/", window.location.origin));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri}>
+      <div className="App">
+        <header className="App-header">
+          <Nav />
+        </header>
+        <main>
+          <AppRoutes />
+        </main>
+        <Footer />
+      </div>
+    </Security>
   );
 }
 
