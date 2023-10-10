@@ -1,6 +1,7 @@
 const CLIENT_ID = process.env.REACT_APP_OKTA_CLIENT_ID || "{clientId}";
 const ISSUER =
-  process.env.REACT_APP_OKTA_ISSUER || "https://{yourOktaDomain}.com/oauth2/default";
+  process.env.REACT_APP_OKTA_ISSUER ||
+  "https://{yourOktaDomain}.com/oauth2/default";
 const OKTA_TESTING_DISABLEHTTPSCHECK =
   process.env.OKTA_TESTING_DISABLEHTTPSCHECK || false;
 const BASENAME = process.env.PUBLIC_URL || "";
@@ -14,5 +15,16 @@ export const config = {
     scopes: ["openid", "profile", "email"],
     pkce: true,
     disableHttpsCheck: OKTA_TESTING_DISABLEHTTPSCHECK,
+    storageManager: {
+      token: {
+        storageTypes: ["cookie"],
+      },
+    },
+    cache: {
+      storageTypes: ["cookie"],
+    },
+    transaction: {
+      storageTypes: ["cookie"],
+    },
   },
 };
